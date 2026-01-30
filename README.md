@@ -10,7 +10,6 @@ Fundus kamera görüntülerinden göz hastalıklarını tespit eden yapay zeka d
 - [Model Eğitimi](#model-eğitimi)
 - [Proje Yapısı](#proje-yapısı)
 - [Teknolojiler](#teknolojiler)
-- [Lisans](#lisans)
 
 ##  Özellikler
 
