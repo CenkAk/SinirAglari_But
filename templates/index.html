@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Göz Hastalığı Tespit Sistemi</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Göz Hastalığı Tespit Sistemi</h1>
+            <p class="subtitle">Fundus görüntülerinden AI destekli sınıflandırma</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div id="uploadArea" class="upload-area">
+                    <div class="upload-content">
+                        <svg width="80" height="80" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                        </svg>
+                        <h3>Görüntü yükleyin</h3>
+                        <p>Dosyayı sürükleyip bırakın veya tıklayarak seçin</p>
+                        <p class="file-info">PNG, JPG, JPEG (max 16MB)</p>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display:none">
+
+                <div id="previewSection" class="preview-section" style="display:none">
+                    <h3>Seçilen görüntü</h3>
+                    <div class="image-preview">
+                        <img id="previewImage" alt="Önizleme">
+                    </div>
+                    <button id="analyzeBtn" class="btn btn-primary">Analiz Et</button>
+                    <button id="changeImageBtn" class="btn btn-secondary">Görüntü Değiştir</button>
+                </div>
+
+                <div id="loadingSection" class="loading-section" style="display:none">
+                    <div class="spinner"></div>
+                    <p>Analiz yapılıyor...</p>
+                </div>
+
+                <div id="errorSection" class="error-section" style="display:none">
+                    <div class="error-message">
+                        <h3>Hata</h3>
+                        <p id="errorText"></p>
+                    </div>
+                </div>
+
+                <div id="resultsSection" class="results-section" style="display:none">
+                    <h2>Sonuçlar</h2>
+                    <div class="result-card">
+                        <div class="result-header">
+                            <h3 id="topClass">-</h3>
+                            <span id="confidenceBadge" class="confidence-badge">-%</span>
+                        </div>
+                        <div class="confidence-bar">
+                            <div id="confidenceFill" class="confidence-fill"></div>
+                        </div>
+                    </div>
+                    <div class="all-predictions">
+                        <h3>Tüm sınıflar</h3>
+                        <div class="chart-container">
+                            <canvas id="predictionsChart"></canvas>
+                        </div>
+                        <div class="predictions-list">
+                            <h3>Olasılık dağılımı</h3>
+                            <div id="predictionsList"></div>
+                        </div>
+                    </div>
+                    <button id="newAnalysisBtn" class="btn btn-primary">Yeni Analiz</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Bu sistem araştırma ve eğitim amaçlıdır. Tıbbi teşhis için kullanılmamalıdır.</p>
+        </footer>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
